@@ -3,10 +3,31 @@
 let url = "http://127.0.0.1:3000/api/workexperience" //URL till mitt API
 
 
-window.onload = () => getData(); // kalla på funktion för att hämta in min data
+    window.onload = () => getData(); // kalla på funktion för att hämta in min data
 
-/* Event listener */
 
+
+/* funktion för att läsa in datan i formuläret */
+const form = document.getElementById("form");
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    let companyname = document.getElementById("companyname").value;
+    let jobtitle = document.getElementById("jobtitle").value;
+    let location = document.getElementById("location").value;
+    let startdate = document.getElementById("startdate").value;
+    let enddate = document.getElementById("enddate").value;
+    let description = document.getElementById("description").value;
+
+    if (companyname == "" || jobtitle == "" || location == "" || startdate == "" || enddate == "" || description == "") {
+        //throw error
+        alert("You must fill in everything!")
+        return;
+    } else {
+        createWorkExperience(companyname, jobtitle, location, startdate, enddate, description);
+        alert("Work experience added succesfully!");
+    }
+});
 
 
 /* Funktion för att hämta data */
@@ -24,11 +45,11 @@ async function getData() {
 /* Funktion för att lägga till data i databasen */
 async function createWorkExperience(companyname, jobtitle, location, startdate, enddate, description) {
     let workexperience = {
-        companyname: companyname, 
-        jobtitle: jobtitle, 
-        location: location, 
-        startdate: startdate, 
-        enddate: enddate, 
+        companyname: companyname,
+        jobtitle: jobtitle,
+        location: location,
+        startdate: startdate,
+        enddate: enddate,
         description: description
     }
     const response = await fetch(url, {
@@ -60,10 +81,10 @@ function displayData(data) {
 
         containerEl.innerHTML += `
         <div class='cv'>
-            <h1>${companyname}</h1>
-            <h2>${jobtitle}</h2>
-            <h3>${location}</h3>
-            <h4>${startdate} - ${enddate}</h4>
+            <h2>${companyname}</h2>
+            <h3>${jobtitle}</h3>
+            <h4>${location}</h4>
+            <h5>${startdate} - ${enddate}</h5>
             <p>${description}</p>
         </div>
         `;
