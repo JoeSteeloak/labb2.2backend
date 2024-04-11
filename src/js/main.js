@@ -44,8 +44,8 @@ function displayData(data) {
         });
 
         // Lägg till CV-div och delete-knappen i containerEl
+        cvDiv.appendChild(deleteBtn);
         containerEl.appendChild(cvDiv);
-        containerEl.appendChild(deleteBtn);
     });
 }
 

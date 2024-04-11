@@ -1,0 +1,73 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+}
+
+main {
+    margin-top: 80px;
+}
+
+div {
+    border: 1px solid black;
+    padding: 10px;
+    width: 90%;
+    max-width: 640px;
+    margin: 10px auto;
+    background-color: aliceblue;
+    opacity: 0.9;
+}
+
+.formContainer {
+    margin-top: 120px;
+}
+
+
+h2 {
+    margin-top: 0;
+}
+
+.whisper-regular {
+    font-family: "Whisper", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 5em;
+    text-align: center;
+    text-shadow: 1px 1px 1px  white;
+}
+
+body {
+    background-image: linear-gradient(rgb(130, 145, 233),rgb(182, 208, 232));
+}
+
+header {
+    background-color: white;
+    opacity: 0.9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 25px 0 black;
+    z-index: 1;
+}
+
+header * {
+    display: inline;
+}
+
+header li {
+    margin: 20px;
+}
+
+header li a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
