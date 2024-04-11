@@ -52,9 +52,6 @@ function displayData(data) {
 /* Funktion för att ta bort data i databasen */
 
 async function deleteData(id) {
-    // Lägg märke till hur `id` läggs till i slutet av URL:en.
-    // Det antas att `url` redan är definierad någonstans i din kod,
-    // och att den pekar på den korrekta routen för att hantera DELETE-begäran.
     const response = await fetch(url + "/" + id, { 
         method: "DELETE",
         headers: {
@@ -68,7 +65,7 @@ async function deleteData(id) {
         alert("Work experience deleted successfully!");
         getData();
     } else {
-        // Hantera fel, t.ex. visa ett felmeddelande
+        // Hantera fel
         alert("Failed to delete work experience!");
     }
 }
