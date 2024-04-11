@@ -3,7 +3,7 @@
 let url = "http://127.0.0.1:3000/api/workexperience" //URL till mitt API
 
 
-    window.onload = () => getData(); // kalla på funktion för att hämta in min data
+window.onload = () => getData(); // kalla på funktion för att hämta in min data
 
 
 
@@ -25,7 +25,6 @@ form.addEventListener('submit', (e) => {
         return;
     } else {
         createWorkExperience(companyname, jobtitle, location, startdate, enddate, description);
-        alert("Work experience added succesfully!");
     }
 });
 
@@ -62,31 +61,63 @@ async function createWorkExperience(companyname, jobtitle, location, startdate, 
 
     const data = await response.json();
     console.log(data);
+    alert("Work experience added succesfully!");
+    window.location.href = '/src/index.html'; //skicka en tillbaka till startsidan
+}
+
+/* Funktion för att skriva ut databasen till DOM */
+function displayData(data) {
+    const containerEl = document.getElementById("cv");
+    containerEl.innerHTML = "";
+    data.forEach(e => {
+        // Skapa en ny div för varje CV-post
+        const cvDiv = document.createElement('div');
+        cvDiv.classList.add('cv');
+        cvDiv.innerHTML = `
+            <h2>${e.companyname}</h2>
+            <h3>${e.jobtitle}</h3>
+            <h4>${e.location}</h4>
+            <h5>${e.startdate} - ${e.enddate}</h5>
+            <p>${e.description}</p>
+        `;
+
+        // Skapa delete-knappen
+        const deleteBtn = document.createElement('input');
+        deleteBtn.type = 'button';
+        deleteBtn.value = 'Delete';
+        deleteBtn.id = e.id;
+
+        // Fäst event listener till delete-knappen
+        deleteBtn.addEventListener('click', () => {
+            deleteData(e.id);
+        });
+
+        // Lägg till CV-div och delete-knappen i containerEl
+        containerEl.appendChild(cvDiv);
+        containerEl.appendChild(deleteBtn);
+    });
 }
 
 /* Funktion för att ta bort data i databasen */
 
-/* Funktion för att skriva ut databasen till DOM */
-function displayData(data) {
-
-    data.forEach(e => {
-
-        const containerEl = document.getElementById("cv");
-        const companyname = e.companyname;
-        const jobtitle = e.jobtitle;
-        const location = e.location;
-        const startdate = e.startdate;
-        const enddate = e.enddate;
-        const description = e.description;
-
-        containerEl.innerHTML += `
-        <div class='cv'>
-            <h2>${companyname}</h2>
-            <h3>${jobtitle}</h3>
-            <h4>${location}</h4>
-            <h5>${startdate} - ${enddate}</h5>
-            <p>${description}</p>
-        </div>
-        `;
+async function deleteData(id) {
+    // Lägg märke till hur `id` läggs till i slutet av URL:en.
+    // Det antas att `url` redan är definierad någonstans i din kod,
+    // och att den pekar på den korrekta routen för att hantera DELETE-begäran.
+    const response = await fetch(url + "/" + id, { 
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
     });
-};
+
+    if (response.ok) { // Kontrollerar om HTTP-statuskoden är 200
+        const data = await response.json();
+        console.log(data);
+        alert("Work experience deleted successfully!");
+        getData();
+    } else {
+        // Hantera fel, t.ex. visa ett felmeddelande
+        alert("Failed to delete work experience!");
+    }
+}
