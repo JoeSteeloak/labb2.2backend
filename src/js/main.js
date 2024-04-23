@@ -28,7 +28,7 @@ function displayData(data) {
             <h2>${e.companyname}</h2>
             <h3>${e.jobtitle}</h3>
             <h4>${e.location}</h4>
-            <h5>${e.startdate} - ${e.enddate}</h5>
+            <h5>${e.startdate.split("T")[0]} - ${e.enddate.split("T")[0]}</h5>
             <p>${e.description}</p>
         `;
 
