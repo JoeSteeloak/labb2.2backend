@@ -5,3 +5,5 @@ delete data from the API database. It is designed as a CV where you can read a p
 but you can also add new experiences to it and delete old ones.
 The database manager used is SQLite, which is a fast and easy to use DBM which stores the whole database
 as a single .db file.
+
+Update: The database used is now a MongoDB database but the site's functionality and code is virtually the same
