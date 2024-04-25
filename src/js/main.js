@@ -36,11 +36,11 @@ function displayData(data) {
         const deleteBtn = document.createElement('input');
         deleteBtn.type = 'button';
         deleteBtn.value = 'Delete';
-        deleteBtn.id = e.id;
+        deleteBtn.id = e._id;
 
         // Fäst event listener till delete-knappen
         deleteBtn.addEventListener('click', () => {
-            deleteData(e.id);
+            deleteData(e._id);
         });
 
         // Lägg till CV-div och delete-knappen i containerEl
